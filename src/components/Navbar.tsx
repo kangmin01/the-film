@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { lobsterTwo } from "../font";
+import { lobsterTwo } from "../app/font";
 import { IoSearchOutline } from "react-icons/io5";
 
 const menu = [
