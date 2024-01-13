@@ -8,8 +8,10 @@ if (!MONGODB_URI) {
   );
 }
 
+//@ts-ignore
 let cached = global.mongoose;
 if (!cached) {
+  //@ts-ignore
   cached = global.mongoose = { conn: null, promise: null };
 }
 
@@ -22,7 +24,7 @@ export default async function connectDB() {
     const opts = {
       bufferCommands: false,
     };
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+    cached.promise = mongoose.connect(MONGODB_URI!, opts).then((mongoose) => {
       return mongoose;
     });
   }
