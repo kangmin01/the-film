@@ -7,6 +7,7 @@ export async function POST(req: NextRequest, res: Response) {
   await connectDB();
 
   const form = await req.formData();
+  const avatarUrl = form.get("avatarUrl");
   const username = form.get("username");
   const email = form.get("email") as string;
   const password = form.get("password") as string;
