@@ -4,6 +4,7 @@ import Link from "next/link";
 import { lobsterTwo } from "../app/font";
 import { IoSearchOutline } from "react-icons/io5";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
 
 const menu = [
   {
@@ -21,7 +22,7 @@ const menu = [
 ];
 
 export default function Navbar() {
-  const { data: session, data } = useSession();
+  const { data: session } = useSession();
   const user = session?.user;
 
   return (
@@ -38,15 +39,21 @@ export default function Navbar() {
           ))}
           {user && (
             <div>
-              <p>{user.email}</p>
-              <img src={user.image} alt={user.name} />
+              <Image
+                src={user.image}
+                width={40}
+                height={40}
+                alt={user.name}
+                priority
+                className="rounded-full"
+              />
             </div>
           )}
           {session ? (
-            <button onClick={() => signOut()}>sing out</button>
+            <button onClick={() => signOut()}>Sing out</button>
           ) : (
             <>
-              <button onClick={() => signIn()}>sign in</button>
+              <button onClick={() => signIn()}>Sign in</button>
               <Link href="/signup">Sign Up</Link>
             </>
           )}

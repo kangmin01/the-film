@@ -13,7 +13,7 @@ export async function POST(req: NextRequest, res: Response) {
   const password = form.get("password") as string;
   const password2 = form.get("password2");
 
-  if (!username || !email || !password || !password2) {
+  if (!avatarUrl || !username || !email || !password || !password2) {
     return NextResponse.json(
       { message: "Fill in the fields." },
       { status: 422 }
@@ -64,6 +64,7 @@ export async function POST(req: NextRequest, res: Response) {
 
   try {
     const user = new User({
+      avatarUrl,
       username,
       email,
       password: hashedPassword,

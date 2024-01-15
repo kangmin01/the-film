@@ -20,10 +20,12 @@ export default async function SignInpage({
   const providers = (await getProviders()) ?? {};
 
   return (
-    <Signin
-      providers={providers}
-      callbackUrl={callbackUrl ?? "/"}
-      csrfToken={csrfToken}
-    />
+    <div className="w-full flex justify-center">
+      <Signin
+        providers={providers}
+        callbackUrl={callbackUrl ?? "/"}
+        csrfToken={csrfToken}
+      />
+    </div>
   );
 }
