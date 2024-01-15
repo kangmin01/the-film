@@ -7,11 +7,11 @@ export const movieSchema = new Schema({
   director: { type: String, required: true },
   releaseDate: { type: Date, required: true },
   description: { type: String, required: true },
-  rating: { type: Number, required: true },
+  rating: { type: Number },
   reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
   discussions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Discussion" }],
 });
 
-const Movie = mongoose.model("Movie", movieSchema);
+const Movie = mongoose.models.Movie || mongoose.model("Movie", movieSchema);
 
 export default Movie;

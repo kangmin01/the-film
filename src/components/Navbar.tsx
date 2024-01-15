@@ -57,6 +57,13 @@ export default function Navbar() {
               <Link href="/signup">Sign Up</Link>
             </>
           )}
+          {user?.type === "admin" ? (
+            <li className="flex items-center">
+              <Link href="/admin/add-movie">Add Movie</Link>
+            </li>
+          ) : (
+            ""
+          )}
         </ul>
       </nav>
     </div>
