@@ -48,7 +48,7 @@ export default function AddMoviePage() {
               src={URL.createObjectURL(file)}
               width={100}
               height={140}
-              alt="Avatar Image"
+              alt="Poster"
               className="w-full h-full object-cover"
             />
           </div>

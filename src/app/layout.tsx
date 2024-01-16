@@ -3,6 +3,7 @@ import "./globals.css";
 import { inter } from "./font";
 import Navbar from "../components/Navbar";
 import AuthContext from "@/context/AuthContext";
+import SWRConfigContext from "@/context/SWRConfigContext";
 
 export const metadata: Metadata = {
   title: "The Film",
@@ -23,7 +24,9 @@ export default function RootLayout({
               <Navbar />
             </div>
           </header>
-          <main className="max-w-screen-xl mx-auto">{children}</main>
+          <main className="max-w-screen-xl mx-auto">
+            <SWRConfigContext>{children}</SWRConfigContext>
+          </main>
         </AuthContext>
       </body>
     </html>

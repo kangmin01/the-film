@@ -7,7 +7,7 @@ export const movieSchema = new Schema({
   director: { type: String, required: true },
   releaseDate: { type: Date, required: true },
   description: { type: String, required: true },
-  rating: { type: Number },
+  rating: [{ type: Number }],
   reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
   discussions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Discussion" }],
 });
