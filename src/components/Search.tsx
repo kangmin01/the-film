@@ -4,7 +4,7 @@ import { SearchMovie } from "@/types/movieTypes";
 import { FormEvent, useState } from "react";
 import useSWR from "swr";
 import MovieCard from "./MovieCard";
-import useDebounce from "@/app/hooks/debounce";
+import useDebounce from "@/hooks/debounce";
 import { IoSearchOutline } from "react-icons/io5";
 
 export default function Search() {

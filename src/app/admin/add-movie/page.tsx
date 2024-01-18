@@ -25,7 +25,6 @@ export default function AddMoviePage() {
       });
 
       if (response.ok) {
-        console.log(response.ok);
         router.push("/");
       }
     } catch (error) {

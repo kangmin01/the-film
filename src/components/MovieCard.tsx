@@ -9,9 +9,7 @@ type Props = {
 
 export default function MovieCard({
   movie: { _id, title, posterUrl, director, releaseDate, rating, description },
-  movie,
 }: Props) {
-  console.log(rating);
   return (
     <Link href={`/movie/${_id}`} className="flex">
       <Image
@@ -23,8 +21,8 @@ export default function MovieCard({
       />
       <div className="flex flex-col w-3/4">
         <span className="w-full font-bold text-3xl truncate mb-2">
-          {title}{" "}
-          <span className="text-neutral-400 text-sm font-light">
+          {title}
+          <span className="text-neutral-400 text-sm font-light ml-2">
             {parseDate(releaseDate)}
           </span>
         </span>
