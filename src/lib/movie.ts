@@ -23,3 +23,16 @@ export async function searchMoives(keyword?: string) {
     );
   }
 }
+
+export async function getMovieDetailById(id: string) {
+  await connectDB();
+
+  try {
+    return Movie.findById(id);
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Error fetching data from DB" },
+      { status: 500 }
+    );
+  }
+}
