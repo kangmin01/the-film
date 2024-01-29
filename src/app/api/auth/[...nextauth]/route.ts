@@ -62,6 +62,7 @@ const authOptions: NextAuthOptions = {
           image: getUser?.image,
           username: getUser?.username,
           type: getUser?.type,
+          id: getUser?.id,
         };
         session.accessToken = token.accessToken as string;
       }

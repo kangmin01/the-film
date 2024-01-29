@@ -10,8 +10,10 @@ const config: Config = {
     extend: {
       colors: {
         c1: "#CAD2C5",
+        c2: "#84A98C",
         c3: "#52796F",
         c5: "#354F52",
+        point: "#EE8080",
       },
     },
   },

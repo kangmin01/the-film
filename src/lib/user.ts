@@ -32,7 +32,12 @@ export const getUserFromDB = async (email: string) => {
   const user = await User.findOne({ email });
 
   if (user) {
-    return { username: user.username, image: user.avatarUrl, type: user.type };
+    return {
+      username: user.username,
+      image: user.avatarUrl,
+      type: user.type,
+      id: user._id,
+    };
   } else {
     return null;
   }
