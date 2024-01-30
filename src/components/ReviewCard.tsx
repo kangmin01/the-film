@@ -33,7 +33,7 @@ export default function ReviewCard({
           />
           <span className="mt-1.5">{rating}</span>
         </div>
-        <p className="w-[700px] h-[100px] my-2">{content}</p>
+        <p className="w-[700px] h-[105px] my-2">{content}</p>
         <div className="flex justify-end items-center pr-10">
           <span className="text-sm text-c1 mr-4 mt-0.5">
             {parseDate(createdAt)}

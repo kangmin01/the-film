@@ -6,7 +6,10 @@ export async function allReviews() {
   await connectDB();
 
   try {
-    return Review.find().populate("movie").populate("writer");
+    return Review.find()
+      .populate("movie")
+      .populate("writer")
+      .sort("-createdAt");
   } catch (error) {
     return NextResponse.json(
       { message: "Error fetching data from DB" },
