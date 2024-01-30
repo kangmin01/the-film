@@ -5,5 +5,5 @@ export type SearchMovie = {
   director: string;
   releaseDate: string;
   description: string;
-  rating: number | undefined;
+  rating: Array<number>;
 };
