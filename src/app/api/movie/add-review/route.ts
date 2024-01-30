@@ -1,12 +1,14 @@
 import connectDB from "@/lib/connectDB";
+import Movie from "@/models/Movie";
 import Review from "@/models/Review";
+import User from "@/models/User";
 import { NextRequest, NextResponse } from "next/server";
 
 type Context = {
   params: { id: string };
 };
 
-export async function POST(req: NextRequest, context: Context) {
+export async function POST(req: NextRequest) {
   await connectDB();
 
   const form = await req.formData();
@@ -23,6 +25,19 @@ export async function POST(req: NextRequest, context: Context) {
       content,
     });
     await review.save();
+
+    await Movie.findByIdAndUpdate(movie, {
+      $push: {
+        rating: rating,
+        reviews: review._id,
+      },
+    });
+
+    await User.findByIdAndUpdate(writer, {
+      $push: {
+        reviews: review._id,
+      },
+    });
 
     return NextResponse.json({
       message: "Add review successfully!",
