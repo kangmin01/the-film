@@ -1,4 +1,5 @@
 import User from "@/models/User";
+import Review, { reviewSchema } from "@/models/Review";
 import { NextResponse } from "next/server";
 import connectDB from "./connectDB";
 import { CredentialUser, OAuthUser } from "@/types/userTypes";
@@ -28,7 +29,9 @@ const generateUniqueUsername = async (): Promise<string> => {
   }
 };
 
-export const getUserFromDB = async (email: string) => {
+export const getUserByEmail = async (email: string) => {
+  await connectDB();
+
   const user = await User.findOne({ email });
 
   if (user) {
@@ -38,6 +41,22 @@ export const getUserFromDB = async (email: string) => {
       type: user.type,
       id: user._id,
     };
+  } else {
+    return null;
+  }
+};
+
+export const getUserByUsername = async (username: string) => {
+  await connectDB();
+
+  const Review = require("@/models/Review").default;
+  const user = await User.findOne({ username }).populate([
+    { path: "reviews", populate: { path: "writer", model: "User" } },
+    { path: "reviews", populate: { path: "movie", model: "Movie" } },
+  ]);
+
+  if (user) {
+    return user;
   } else {
     return null;
   }

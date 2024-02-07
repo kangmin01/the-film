@@ -39,14 +39,16 @@ export default function Navbar() {
           ))}
           {user && (
             <div>
-              <Image
-                src={user.image}
-                width={40}
-                height={40}
-                alt={user.name}
-                priority
-                className="rounded-full"
-              />
+              <Link href={`/user/${user.username}`}>
+                <Image
+                  src={user.image}
+                  width={40}
+                  height={40}
+                  alt={user.name || "user profile"}
+                  priority
+                  className="rounded-full"
+                />
+              </Link>
             </div>
           )}
           {session ? (

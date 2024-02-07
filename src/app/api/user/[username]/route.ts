@@ -1,11 +1,11 @@
-import { getMovieDetailById } from "@/lib/movie";
+import { getUserByUsername } from "@/lib/user";
 import { NextRequest, NextResponse } from "next/server";
 
 type Context = {
-  params: { id: string };
+  params: { username: string };
 };
 
 export async function GET(req: NextRequest, context: Context) {
-  return getMovieDetailById(context.params.id) //
+  return getUserByUsername(context.params.username) //
     .then((data) => NextResponse.json(data));
 }

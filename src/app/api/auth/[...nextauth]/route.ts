@@ -1,4 +1,4 @@
-import { addUser, authorizeUser, getUserFromDB } from "@/lib/user";
+import { addUser, authorizeUser, getUserByEmail } from "@/lib/user";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GitHub from "next-auth/providers/github";
@@ -55,7 +55,7 @@ const authOptions: NextAuthOptions = {
       const user = session?.user;
 
       if (user) {
-        const getUser = await getUserFromDB(user.email);
+        const getUser = await getUserByEmail(user.email);
 
         session.user = {
           ...user,
