@@ -12,19 +12,21 @@ type Props = {
 };
 
 export default function MovieDetialPage({ params: { id } }: Props) {
-  const { data: movie } = useSWR<SearchMovie>(`/api/movie/${id}`);
+  const {
+    data: movie,
+    isLoading,
+    error,
+  } = useSWR<SearchMovie>(`/api/movie/${id}`);
 
   const pathname = usePathname();
 
-  if (!movie) {
+  if (!isLoading && error && !movie) {
     return NotFound();
   }
 
   return (
     <section>
-      <div>
-        <MovieCard movie={movie} />
-      </div>
+      <div>{movie && <MovieCard movie={movie} />}</div>
       <Button text="Write" src={`${pathname}/add-review`} />
       <div>{/* 리뷰, 토론 */}</div>
     </section>

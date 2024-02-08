@@ -8,7 +8,7 @@ type Props = {
 
 export default function UserReviews({ reviews, isOwner }: Props) {
   return (
-    <section className="py-12 border-2 border-c1 h-[600px]">
+    <section className="py-12 border-2 border-c1 border-t-0 h-[600px]">
       <ul className="h-full overflow-y-auto">
         {reviews &&
           reviews.map((review) => (

@@ -22,7 +22,7 @@ export default function UserPage({ params: { username } }: Props) {
   const isOwner = user?.username === sessionUser?.username;
 
   if (!isLoading && error && !user) {
-    NotFound();
+    return NotFound();
   }
 
   return (

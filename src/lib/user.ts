@@ -50,9 +50,16 @@ export const getUserByUsername = async (username: string) => {
   await connectDB();
 
   const Review = require("@/models/Review").default;
+  const Movie = require("@/models/Movie").default;
   const user = await User.findOne({ username }).populate([
-    { path: "reviews", populate: { path: "writer", model: "User" } },
-    { path: "reviews", populate: { path: "movie", model: "Movie" } },
+    {
+      path: "reviews",
+      options: { sort: { createdAt: -1 } },
+      populate: [
+        { path: "writer", model: "User" },
+        { path: "movie", model: "Movie" },
+      ],
+    },
   ]);
 
   if (user) {

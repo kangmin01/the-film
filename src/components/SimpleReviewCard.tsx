@@ -1,7 +1,10 @@
+"use client";
+
 import { Review } from "@/types/reviewTypes";
 import { parseDate } from "@/util/date";
-import { useSession } from "next-auth/react";
 import { Rating } from "react-simple-star-rating";
+import RemoveIcon from "./ui/icons/RemoveIcon";
+import EditIcon from "./ui/icons/EditIcon";
 
 type Props = {
   review: Review;
@@ -9,22 +12,53 @@ type Props = {
 };
 export default function SimpleReviewCard({
   isOwner,
-  review: { rating, content, createdAt, writer, movie },
+  review: { _id, rating, content, createdAt, writer, movie },
 }: Props) {
+  const handleEdit = () => {};
+
+  const handleRemove = async () => {
+    const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+    try {
+      const response = await fetch(`${baseURL}/api/movie/remove-review`, {
+        method: "DELETE",
+        body: JSON.stringify({ id: _id }),
+      });
+
+      if (response.ok) {
+        // 리뷰 mutate
+      } else {
+        console.error("Failed to delete the review.");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
   return (
     <section className="p-4 border-b border-neutral-300 w-[1000px] mx-auto">
       <h1 className="text-lg font-bold">{movie.title}</h1>
-      <div className="flex items-center mb-2">
-        <Rating
-          initialValue={rating / 2}
-          readonly
-          size={20}
-          fillColor="#EE8080"
-          SVGstyle={{ display: "inline" }}
-          allowFraction={true}
-          className="mr-2"
-        />
-        <span className="mt-1">{rating}</span>
+      <div>
+        <div className="flex items-center mb-2">
+          <Rating
+            initialValue={rating / 2}
+            readonly
+            size={20}
+            fillColor="#EE8080"
+            SVGstyle={{ display: "inline" }}
+            allowFraction={true}
+            className="mr-2"
+          />
+          <span className="mt-1">{rating}</span>
+        </div>
+        <div>
+          <button onClick={handleEdit}>
+            <EditIcon />
+          </button>
+
+          <button onClick={handleRemove}>
+            <RemoveIcon />
+          </button>
+        </div>
       </div>
       <p className="mb-2">{content}</p>
       <div className="flex justify-end">

@@ -21,7 +21,7 @@ export default function UserActivity({ reviews, isOwner }: Props) {
         <li className={tabStyle}>
           <button onClick={() => setTab("reviews")}>Reviews</button>
         </li>
-        <li className={tabStyle}>
+        <li className={`${tabStyle} border-l-0`}>
           <button onClick={() => setTab("discussions")}>Discussions</button>
         </li>
       </ul>
