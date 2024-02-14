@@ -4,10 +4,6 @@ import Review from "@/models/Review";
 import User from "@/models/User";
 import { NextRequest, NextResponse } from "next/server";
 
-type Context = {
-  params: { id: string };
-};
-
 export async function POST(req: NextRequest) {
   await connectDB();
 

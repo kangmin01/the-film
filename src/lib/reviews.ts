@@ -20,15 +20,35 @@ export async function allReviews() {
   }
 }
 
-export async function getUserReviews(id: string) {
+export async function getReview(id: string) {
   await connectDB();
 
   try {
-    return Review.findById(id);
+    const Movie = require("@/models/Movie").default;
+    const User = require("@/models/User").default;
+    return Review.findById(id).populate("movie").populate("writer");
   } catch (error) {
     return NextResponse.json(
       { message: "Error fetching data from DB" },
       { status: 500 }
     );
+  }
+}
+
+export async function updateReview(
+  id: string,
+  rating: string,
+  content: string
+) {
+  await connectDB();
+
+  try {
+    await Review.findByIdAndUpdate(id, { rating, content });
+
+    return NextResponse.json({
+      message: "Update review successfully!",
+    });
+  } catch (error) {
+    return new Response(JSON.stringify(error), { status: 500 });
   }
 }

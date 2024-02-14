@@ -5,17 +5,17 @@ import { parseDate } from "@/util/date";
 import { Rating } from "react-simple-star-rating";
 import RemoveIcon from "./ui/icons/RemoveIcon";
 import EditIcon from "./ui/icons/EditIcon";
+import Link from "next/link";
 
 type Props = {
   review: Review;
   isOwner: Boolean;
 };
+
 export default function SimpleReviewCard({
   isOwner,
   review: { _id, rating, content, createdAt, writer, movie },
 }: Props) {
-  const handleEdit = () => {};
-
   const handleRemove = async () => {
     const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
     try {
@@ -51,10 +51,9 @@ export default function SimpleReviewCard({
           <span className="mt-1">{rating}</span>
         </div>
         <div>
-          <button onClick={handleEdit}>
+          <Link href={`/review/${_id}/edit-review`}>
             <EditIcon />
-          </button>
-
+          </Link>
           <button onClick={handleRemove}>
             <RemoveIcon />
           </button>
