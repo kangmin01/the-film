@@ -1,3 +1,5 @@
+import { Review } from "./reviewTypes";
+
 export type SearchMovie = {
   _id: string;
   title: string;
@@ -6,4 +8,5 @@ export type SearchMovie = {
   releaseDate: string;
   description: string;
   rating: Array<number>;
+  reviews: Review[];
 };

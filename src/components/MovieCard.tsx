@@ -19,6 +19,7 @@ export default function MovieCard({
     );
     ratingAVG = Math.round((sum / rating.length) * 100) / 100;
   }
+
   return (
     <Link href={`/movie/${_id}`} className="flex">
       <Image
