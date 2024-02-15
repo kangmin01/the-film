@@ -2,14 +2,20 @@ import { Review } from "@/types/reviewTypes";
 import { parseDate } from "@/util/date";
 import Image from "next/image";
 import { Rating } from "react-simple-star-rating";
+import ReviewActions from "./ReviewActions";
+import { useSession } from "next-auth/react";
 
 type Props = {
   review: Review;
 };
 
 export default function ReviewCard({
-  review: { content, createdAt, movie, rating, writer },
+  review: { content, createdAt, movie, rating, writer, _id },
 }: Props) {
+  const { data: session } = useSession();
+  const user = session?.user;
+  const isOwner = user?.username === writer.username;
+
   return (
     <section className="flex">
       <Image
@@ -21,17 +27,20 @@ export default function ReviewCard({
       />
       <div>
         <h1 className="text-xl font-bold">{movie.title}</h1>
-        <div className="flex items-center">
-          <Rating
-            className="mr-1"
-            initialValue={rating / 2}
-            readonly
-            size={20}
-            fillColor="#EE8080"
-            SVGstyle={{ display: "inline" }}
-            allowFraction={true}
-          />
-          <span className="mt-1.5">{rating}</span>
+        <div className="flex justify-between">
+          <div className="flex items-center">
+            <Rating
+              className="mr-1"
+              initialValue={rating / 2}
+              readonly
+              size={20}
+              fillColor="#EE8080"
+              SVGstyle={{ display: "inline" }}
+              allowFraction={true}
+            />
+            <span className="mt-1.5">{rating}</span>
+          </div>
+          {isOwner && <ReviewActions reviewId={_id} />}
         </div>
         <p className="w-[700px] h-[105px] my-2">{content}</p>
         <div className="flex justify-end items-center pr-10">
