@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 export const discussionSchema = new Schema({
-  title: { type: String, required: true },
+  subtitle: { type: String, required: true },
   movie: { type: mongoose.Schema.Types.ObjectId, ref: "Movie", required: true },
   date: { type: String, required: true },
   startTime: { type: String, required: true },
@@ -15,10 +15,12 @@ export const discussionSchema = new Schema({
     default: DiscussionStatus.Recruiting,
     required: true,
   },
+  meetingUrl: { type: String, required: true },
   host: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   guest: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 
-const Discussion = mongoose.model("Discussion", discussionSchema);
+const Discussion =
+  mongoose.models.Discussion || mongoose.model("Discussion", discussionSchema);
 
 export default Discussion;

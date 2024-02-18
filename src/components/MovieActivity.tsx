@@ -3,6 +3,7 @@
 import { useState } from "react";
 import MovieReviews from "./MovieReviews";
 import { Review } from "@/types/reviewTypes";
+import MovieDiscussions from "./MovieDiscussions";
 
 type Props = {
   reviews: Review[];
@@ -25,7 +26,7 @@ export default function MovieActivity({ reviews }: Props) {
       </ul>
       <div className="py-8 border-2 border-c1 border-t-0 h-[600px] overflow-hidden">
         {tab === "reviews" && <MovieReviews reviews={reviews} />}
-        {tab === "discussions" && <div>토론입니당</div>}
+        {tab === "discussions" && <MovieDiscussions />}
       </div>
     </section>
   );

@@ -17,7 +17,6 @@ export default function MovieReviews({ reviews }: Props) {
         {reviews &&
           reviews.map((review) => (
             <li key={review._id} className="mb-2">
-              {/* <SimpleReviewCard review={review} isOwner={isOwner} /> */}
               <SimpleReviewCard review={review} />
             </li>
           ))}
