@@ -50,7 +50,7 @@ export default function AddDiscussionPage({ params: { id } }: Props) {
     <section className="flex flex-col items-center">
       <div className="mt-12 mb-8 text-center">
         <h1 className="text-3xl font-bold text-c3">Schedule a discussion</h1>
-        <h2 className="text-2xl font-semibold mt-6">Movie Title</h2>
+        <h2 className="text-2xl font-semibold mt-6">{movie.title}</h2>
       </div>
       <div className="flex flex-col items-center">
         <ul className="text-neutral-400 mb-8">

@@ -18,11 +18,7 @@ export default function MovieDetialPage({ params: { id } }: Props) {
   } = useSWR<SearchMovie>(`/api/movie/${id}`);
 
   if (isLoading) return <p>Loading...</p>;
-  if (!movie) {
-    return NotFound();
-  }
-
-  if (!isLoading && error && !movie) {
+  if (error || !movie) {
     return NotFound();
   }
 
@@ -31,7 +27,7 @@ export default function MovieDetialPage({ params: { id } }: Props) {
       <div className="w-[1100px] my-20">
         {movie && <MovieCard movie={movie} />}
       </div>
-      <MovieActivity reviews={movie.reviews} />
+      <MovieActivity reviews={movie.reviews} discussions={movie.discussions} />
     </section>
   );
 }

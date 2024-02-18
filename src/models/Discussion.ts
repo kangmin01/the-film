@@ -5,11 +5,12 @@ const { Schema } = mongoose;
 export const discussionSchema = new Schema({
   subtitle: { type: String, required: true },
   movie: { type: mongoose.Schema.Types.ObjectId, ref: "Movie", required: true },
-  date: { type: String, required: true },
+  date: { type: Date, required: true },
   startTime: { type: String, required: true },
   notice: { type: String, required: true },
   minHeadcount: { type: Number, required: true },
   maxHeadcount: { type: Number, required: true },
+  createdAt: { type: Date, default: Date.now, required: true },
   status: {
     type: String,
     default: DiscussionStatus.Recruiting,

@@ -1,3 +1,4 @@
+import { Discussion } from "./discussionTypes";
 import { Review } from "./reviewTypes";
 
 export type SearchMovie = {
@@ -9,4 +10,5 @@ export type SearchMovie = {
   description: string;
   rating: Array<number>;
   reviews: Review[];
+  discussions: Discussion[];
 };

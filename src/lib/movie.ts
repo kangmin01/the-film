@@ -30,13 +30,16 @@ export async function getMovieDetailById(id: string) {
   try {
     const Review = require("@/models/Review").default;
     const User = require("@/models/User").default;
-    return Movie.findById(id).populate({
-      path: "reviews",
-      populate: {
-        path: "writer",
-        model: "User",
-      },
-    });
+    const Discussion = require("@/models/Discussion").default;
+    return Movie.findById(id)
+      .populate("discussions")
+      .populate({
+        path: "reviews",
+        populate: {
+          path: "writer",
+          model: "User",
+        },
+      });
   } catch (error) {
     return NextResponse.json(
       { message: "Error fetching data from DB" },
