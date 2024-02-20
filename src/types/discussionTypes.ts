@@ -19,3 +19,23 @@ export type Discussion = {
   guest: string[];
   meetingUrl: string;
 };
+
+export type UpdateDiscussion = {
+  subtitle: string;
+  date: string;
+  notice: string;
+  startTime: string;
+  minHeadcount: number;
+  maxHeadcount: number;
+  meetingUrl: string;
+};
+
+export type DiscussionState = {
+  subtitle?: string;
+  date?: string;
+  startTime?: string;
+  notice?: string;
+  minHeadcount?: number;
+  maxHeadcount?: number;
+  meetingUrl?: string;
+};

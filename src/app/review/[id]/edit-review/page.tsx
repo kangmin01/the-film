@@ -34,6 +34,7 @@ export default function EditReviewPage({ params: { id } }: Props) {
   const handleRating = (rate: number) => {
     setRating(rate * 2);
   };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {

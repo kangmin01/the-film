@@ -21,14 +21,10 @@ export function getDateDifference(
   dateString1: string,
   dateString2: string
 ): number {
-  const date1 = new Date(dateString1);
-  const date2 = new Date(dateString2);
+  const date1 = new Date(dateString1).getDate();
+  const date2 = new Date(dateString2).getDate();
 
-  const differenceInMilliseconds = Math.abs(date2.getTime() - date1.getTime());
-
-  const differenceInDays = Math.round(
-    differenceInMilliseconds / (1000 * 60 * 60 * 24)
-  );
+  const differenceInDays = Math.abs(date2 - date1);
 
   return differenceInDays;
 }

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "./connectDB";
 import Discussion from "@/models/Discussion";
+import { UpdateDiscussion } from "@/types/discussionTypes";
 
 export async function allDiscussions() {
   await connectDB();
@@ -26,5 +27,19 @@ export async function getDiscussionDetailById(id: string) {
       { message: "Error fetching data from DB" },
       { status: 500 }
     );
+  }
+}
+
+export async function updateDiscussion(id: string, data: UpdateDiscussion) {
+  await connectDB();
+
+  try {
+    await Discussion.findByIdAndUpdate(id, data);
+
+    return NextResponse.json({
+      message: "Update discussion successfully!",
+    });
+  } catch (error) {
+    return new Response(JSON.stringify(error), { status: 500 });
   }
 }

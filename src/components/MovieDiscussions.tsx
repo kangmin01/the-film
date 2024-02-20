@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Button from "./Button";
 import { Discussion } from "@/types/discussionTypes";
 import SimpleDiscussionCard from "./SimpleDiscussionCard";
+import { useSession } from "next-auth/react";
 
 type Props = {
   discussions: Discussion[];
@@ -15,7 +16,7 @@ export default function MovieDiscussions({ discussions }: Props) {
   return (
     <>
       <Button text="Create a discussion" src={`${pathname}/add-discussion`} />
-      <ul>
+      <ul className="grid grid-cols-2 gap-6 px-6">
         {discussions &&
           discussions.map((discussion) => (
             <li key={discussion._id} className="mb-2">
