@@ -9,7 +9,7 @@ type Props = {
 export default function DiscussionCard({
   discussion: { _id, subtitle, movie, date, startTime, maxHeadcount, guest },
 }: Props) {
-  const guestNum = guest.length;
+  const guestNum = guest.length + 1;
 
   const today = new Date();
   const dDay = getDateDifference(today.toString(), date);

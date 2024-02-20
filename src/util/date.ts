@@ -26,7 +26,7 @@ export function getDateDifference(
 
   const differenceInMilliseconds = Math.abs(date2.getTime() - date1.getTime());
 
-  const differenceInDays = Math.ceil(
+  const differenceInDays = Math.round(
     differenceInMilliseconds / (1000 * 60 * 60 * 24)
   );
 

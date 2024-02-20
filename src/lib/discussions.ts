@@ -15,3 +15,16 @@ export async function allDiscussions() {
     );
   }
 }
+
+export async function getDiscussionDetailById(id: string) {
+  await connectDB();
+
+  try {
+    return Discussion.findById(id).populate("movie");
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Error fetching data from DB" },
+      { status: 500 }
+    );
+  }
+}
