@@ -8,7 +8,7 @@ type Props = {
 };
 
 export default function UserProfile({
-  user: { username, avatarUrl, email, reviews },
+  user: { username, avatarUrl, email, reviews, host, guest },
   isOwner,
 }: Props) {
   return (
@@ -24,7 +24,12 @@ export default function UserProfile({
         <h1 className="text-2xl font-bold my-2">{username}</h1>
         <span className="text-lg text-c3">{email}</span>
       </div>
-      <UserActivity reviews={reviews} isOwner={isOwner} />
+      <UserActivity
+        reviews={reviews}
+        guest={guest}
+        host={host}
+        isOwner={isOwner}
+      />
     </section>
   );
 }

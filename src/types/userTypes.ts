@@ -1,3 +1,4 @@
+import { Discussion } from "./discussionTypes";
 import { Review } from "./reviewTypes";
 
 export enum UserTypes {
@@ -23,6 +24,8 @@ export type UserProfile = {
   email: string;
   username: string;
   reviews: Review[];
+  host: Discussion[];
+  guest: Discussion[];
 };
 
 export type NewUser = {

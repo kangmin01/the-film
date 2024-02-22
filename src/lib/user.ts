@@ -60,6 +60,12 @@ export const getUserByUsername = async (username: string) => {
         { path: "movie", model: "Movie" },
       ],
     },
+    {
+      path: "host",
+    },
+    {
+      path: "guest",
+    },
   ]);
 
   if (user) {
