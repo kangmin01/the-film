@@ -3,8 +3,10 @@
 import NotFound from "@/app/movie/[id]/not-found";
 import { Discussion } from "@/types/discussionTypes";
 import { parseDateToUs } from "@/util/date";
-import { link } from "fs";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import useSWR from "swr";
 
 type Props = {
@@ -18,14 +20,40 @@ export default function DiscussionPage({ params: { id } }: Props) {
     error,
   } = useSWR<Discussion>(`/api/discussion/${id}`);
 
+  const { data: session } = useSession();
+  const user = session?.user;
+
+  const router = useRouter();
+
   if (isLoading) return <p>Loading...</p>;
   if (error || !discussion) {
     return NotFound();
   }
 
+  const isHost = discussion.host === user.id;
+
   const guestNum = discussion.guest.length + 1;
 
   const notices = discussion.notice.split("\r\n");
+
+  const handleRemove = async () => {
+    const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+    try {
+      const response = await fetch(`${baseURL}/api/movie/remove-discussion`, {
+        method: "DELETE",
+        body: JSON.stringify({ id }),
+      });
+
+      if (response.ok) {
+        router.push(`/discussions`);
+      } else {
+        console.error("Failed to delete the discussion.");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
 
   return (
     <section>
@@ -54,9 +82,23 @@ export default function DiscussionPage({ params: { id } }: Props) {
               Minimum : {discussion.minHeadcount}
             </span>
           </div>
-          <button className="block mt-10 bg-c2 hover:bg-c3 rounded-xl text-xl p-2 px-14 text-white font-bold">
-            Join a Discussion
-          </button>
+          {isHost === true ? (
+            <div>
+              <button className="w-[200px] mt-10 mr-4 bg-c2 hover:bg-c3 rounded-xl text-xl p-2 px-14 text-white font-bold">
+                <Link href={`/discussion/${id}/edit-discussion`}>Edit</Link>
+              </button>
+              <button
+                onClick={handleRemove}
+                className="w-[200px] mt-10 bg-point text-center hover:bg-red-500 rounded-xl text-xl p-2 px-14 text-white font-bold"
+              >
+                Remove
+              </button>
+            </div>
+          ) : (
+            <button className="block mt-10 bg-c2 hover:bg-c3 rounded-xl text-xl p-2 px-14 text-white font-bold">
+              Join a Discussion
+            </button>
+          )}
         </div>
       </div>
       <div className="pl-28">
@@ -71,13 +113,13 @@ export default function DiscussionPage({ params: { id } }: Props) {
             discussion starts.
           </li>
         </ul>
-        <span className="font-semibold text-xl block mt-6 mb-2">
+        <span className="font-semibold text-xl block mt-10 mb-4">
           [ Additional Notice ]
         </span>
         <ul>
           {notices.map((notice, idx) => (
-            <li className="pl-2 mb-1.5" key={idx}>
-              {idx + 1}. {notice}
+            <li className="px-4 mb-4" key={idx}>
+              {notice}
             </li>
           ))}
         </ul>
