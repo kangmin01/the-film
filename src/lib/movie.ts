@@ -32,7 +32,13 @@ export async function getMovieDetailById(id: string) {
     const User = require("@/models/User").default;
     const Discussion = require("@/models/Discussion").default;
     return Movie.findById(id)
-      .populate("discussions")
+      .populate({
+        path: "discussions",
+        populate: {
+          path: "movie",
+          model: "Movie",
+        },
+      })
       .populate({
         path: "reviews",
         populate: {

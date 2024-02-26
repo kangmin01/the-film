@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import Button from "./Button";
 import { Discussion } from "@/types/discussionTypes";
 import SimpleDiscussionCard from "./SimpleDiscussionCard";
-import { useSession } from "next-auth/react";
 
 type Props = {
   discussions: Discussion[];
