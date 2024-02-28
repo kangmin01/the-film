@@ -4,6 +4,7 @@ import { inter } from "./font";
 import Navbar from "../components/Navbar";
 import AuthContext from "@/context/AuthContext";
 import SWRConfigContext from "@/context/SWRConfigContext";
+import { updateDiscussionStatus } from "@/lib/discussions";
 
 export const metadata: Metadata = {
   title: "The Film",
@@ -15,6 +16,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  setInterval(updateDiscussionStatus, 60000);
   return (
     <html lang="en">
       <body className={inter.className}>

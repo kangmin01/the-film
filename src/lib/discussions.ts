@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "./connectDB";
 import Discussion from "@/models/Discussion";
-import { UpdateDiscussion } from "@/types/discussionTypes";
+import { DiscussionStatus, UpdateDiscussion } from "@/types/discussionTypes";
 import User from "@/models/User";
 
 export async function allDiscussions() {
@@ -60,3 +60,24 @@ export async function joinDiscussion(id: string, userId: string) {
     return new Response(JSON.stringify(error), { status: 500 });
   }
 }
+
+export const updateDiscussionStatus = async () => {
+  await connectDB();
+
+  const discussions = await Discussion.find({
+    status: DiscussionStatus.Recruiting,
+  });
+
+  discussions.forEach(async (discussion) => {
+    const discussionDateTime = new Date(
+      `${discussion.date.toISOString().split("T")[0]}T${discussion.startTime}`
+    );
+
+    if (discussionDateTime < new Date()) {
+      await Discussion.updateOne(
+        { _id: discussion._id },
+        { $set: { status: DiscussionStatus.Completed } }
+      );
+    }
+  });
+};

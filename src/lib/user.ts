@@ -62,9 +62,13 @@ export const getUserByUsername = async (username: string) => {
     },
     {
       path: "host",
+      options: { sort: { date: -1 } },
+      populate: [{ path: "movie", model: "Movie" }],
     },
     {
       path: "guest",
+      options: { sort: { date: -1 } },
+      populate: [{ path: "movie", model: "Movie" }],
     },
   ]);
 

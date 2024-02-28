@@ -18,7 +18,7 @@ export default function DiscussionCard({ discussion }: Props) {
   const guestNum = guest.length + 1;
 
   const today = new Date();
-  const dDay = getDateDifference(today.toString(), date);
+  let dDay = getDateDifference(today.toString(), date);
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -27,9 +27,13 @@ export default function DiscussionCard({ discussion }: Props) {
       className="relative block flex-1 border border-c1 p-10 text-center m-6 rounded-3xl hover:shadow-md"
       onClick={() => setOpenModal(true)}
     >
-      {dDay <= 3 && (
+      {dDay === 0 ? (
+        <span className="absolute top-5 left-[-30px] bg-point p-2 px-4 text-white text-xl font-bold rounded-3xl">
+          D-Day
+        </span>
+      ) : dDay <= 3 ? (
         <span className="absolute top-5 left-[-30px] bg-point p-2 px-6 text-white text-xl font-bold rounded-3xl">{`D-${dDay}`}</span>
-      )}
+      ) : null}
       <h1 className="font-bold text-2xl mb-4 w-full">{movie.title}</h1>
       <p className="text-xl font-semibold text-c3 mb-4 w-full truncate">
         {subtitle}

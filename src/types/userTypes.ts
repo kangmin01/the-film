@@ -15,8 +15,8 @@ export type UserInfo = {
   socialOnly: boolean;
   type: string;
   reviews: Review[];
-  host: Array<string>;
-  guest: Array<string>;
+  host: Discussion[];
+  guest: Discussion[];
 };
 
 export type UserProfile = {

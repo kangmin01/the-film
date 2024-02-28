@@ -24,11 +24,14 @@ export default function DiscussionsPage() {
       </h1>
       <ul className="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {discussions &&
-          discussions.map((discussion) => (
-            <li key={discussion._id}>
-              <DiscussionCard discussion={discussion} />
-            </li>
-          ))}
+          discussions.map(
+            (discussion) =>
+              discussion.status === "Recruiting" && (
+                <li key={discussion._id}>
+                  <DiscussionCard discussion={discussion} />
+                </li>
+              )
+          )}
       </ul>
     </section>
   );

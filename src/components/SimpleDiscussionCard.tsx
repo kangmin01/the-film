@@ -24,7 +24,10 @@ export default function SimpleDiscussionCard({ discussion }: Props) {
   const guestNum = guest.length + 1;
 
   return (
-    <section className="relative" onClick={() => setOpenModal(true)}>
+    <section
+      className="relative hover:cursor-pointer"
+      onClick={() => setOpenModal(true)}
+    >
       <div className="block border border-c1 hover:border-c2 p-4 px-6 rounded-2xl">
         <h1 className="text-xl font-bold text-c5 mb-2">{subtitle}</h1>
         <div>
@@ -34,6 +37,15 @@ export default function SimpleDiscussionCard({ discussion }: Props) {
           <span className="text-c2">
             ( {guestNum} / {maxHeadcount} )
           </span>
+          {discussion.status === "Recruiting" ? (
+            <span className="bg-c2 text-white p-1 px-2 text-xs ml-2 rounded-full">
+              {discussion.status}
+            </span>
+          ) : (
+            <span className="bg-c1 text-white p-1 px-2 text-xs ml-2 rounded-full">
+              {discussion.status}
+            </span>
+          )}
         </div>
       </div>
       {isHost && <DiscussionActions discussionId={_id} />}

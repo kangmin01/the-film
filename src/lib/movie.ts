@@ -34,6 +34,7 @@ export async function getMovieDetailById(id: string) {
     return Movie.findById(id)
       .populate({
         path: "discussions",
+        options: { sort: { date: -1 } },
         populate: {
           path: "movie",
           model: "Movie",
