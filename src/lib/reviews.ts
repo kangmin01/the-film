@@ -8,7 +8,10 @@ export async function allReviews() {
   const Movie = require("@/models/Movie").default;
   const User = require("@/models/User").default;
   try {
-    return Review.find().populate("movie").populate("writer").sort("date");
+    return Review.find()
+      .populate("movie")
+      .populate("writer")
+      .sort("-createdAt");
   } catch (error) {
     return NextResponse.json(
       { message: "Error fetching data from DB" },

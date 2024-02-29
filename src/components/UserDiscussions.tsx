@@ -1,6 +1,5 @@
 import { Discussion } from "@/types/discussionTypes";
 import SimpleDiscussionCard from "./SimpleDiscussionCard";
-import { Span } from "next/dist/trace";
 
 type Props = {
   host: Discussion[];

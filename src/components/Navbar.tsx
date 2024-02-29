@@ -9,15 +9,15 @@ import Image from "next/image";
 const menu = [
   {
     href: "/search",
-    title: <IoSearchOutline />,
+    title: "Movie",
   },
   {
     href: "/reviews",
-    title: "Reviews",
+    title: "Review",
   },
   {
     href: "/discussions",
-    title: "Discussions",
+    title: "Discussion",
   },
 ];
 

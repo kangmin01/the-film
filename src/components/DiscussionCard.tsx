@@ -24,7 +24,7 @@ export default function DiscussionCard({ discussion }: Props) {
 
   return (
     <section
-      className="relative block flex-1 border border-c1 p-10 text-center m-6 rounded-3xl hover:shadow-md"
+      className="relative block flex-1 border border-c1 p-10 text-center m-6 rounded-3xl hover:shadow-md hover:cursor-pointer"
       onClick={() => setOpenModal(true)}
     >
       {dDay === 0 ? (

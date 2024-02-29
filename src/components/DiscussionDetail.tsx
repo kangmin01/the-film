@@ -6,6 +6,7 @@ import CloseIcon from "./ui/icons/CloseIcon";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import { useSWRConfig } from "swr";
 
 type Props = {
   discussion: Discussion;
@@ -56,6 +57,8 @@ export default function DiscussionDetail({ discussion, onClose }: Props) {
     }
   };
 
+  const { mutate } = useSWRConfig();
+
   const handleJoin = async () => {
     try {
       const response = await fetch(
@@ -65,6 +68,8 @@ export default function DiscussionDetail({ discussion, onClose }: Props) {
           body: JSON.stringify({ id: discussion._id, user: session?.user.id }),
         }
       );
+      await mutate(`/api/movie/${discussion.movie._id}`);
+      await mutate("/api/discussions");
 
       if (response.ok) {
         router.refresh();
