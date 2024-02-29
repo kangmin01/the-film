@@ -19,7 +19,7 @@ export default function SimpleDiscussionCard({ discussion }: Props) {
 
   const [openModal, setOpenModal] = useState(false);
 
-  const isHost = user.id === host;
+  const isHost = user?.id === host;
 
   const guestNum = guest.length + 1;
 
