@@ -4,6 +4,7 @@ import { Discussion } from "@/types/discussionTypes";
 import useSWR from "swr";
 import DiscussionCard from "@/components/DiscussionCard";
 import NotFound from "@/app/movie/[id]/not-found";
+import ClipSpinner from "./ClipSpinner";
 
 export default function Discussions() {
   const {
@@ -12,13 +13,17 @@ export default function Discussions() {
     error,
   } = useSWR<Discussion[]>("/api/discussions");
 
-  if (isLoading) return <p>Loading...</p>;
-  if (!discussions && error) {
+  if (error) {
     return NotFound();
   }
 
   return (
     <section>
+      {isLoading && (
+        <div className="text-center mt-32">
+          <ClipSpinner />
+        </div>
+      )}
       <ul className="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {discussions &&
           discussions.map(

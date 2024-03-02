@@ -5,6 +5,7 @@ import { UserInfo } from "@/types/userTypes";
 import useSWR from "swr";
 import NotFound from "./not-found";
 import { useSession } from "next-auth/react";
+import ClipSpinner from "@/components/ClipSpinner";
 
 type Props = {
   params: { username: string };
@@ -21,13 +22,17 @@ export default function UserPage({ params: { username } }: Props) {
   const sessionUser = data?.user;
   const isOwner = user?.username === sessionUser?.username;
 
-  if (!isLoading && error && !user) {
+  if (user === null || error) {
     return NotFound();
   }
 
   return (
     <section>
-      {isLoading && <h1>Loading...</h1>}
+      {isLoading && (
+        <div className="text-center mt-32">
+          <ClipSpinner />
+        </div>
+      )}
       {user && <UserProfile user={user} isOwner={isOwner} />}
     </section>
   );
