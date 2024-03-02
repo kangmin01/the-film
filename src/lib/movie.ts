@@ -42,10 +42,17 @@ export async function getMovieDetailById(id: string) {
       })
       .populate({
         path: "reviews",
-        populate: {
-          path: "writer",
-          model: "User",
-        },
+        options: { sort: { createdAt: -1 } },
+        populate: [
+          {
+            path: "writer",
+            model: "User",
+          },
+          {
+            path: "movie",
+            model: "Movie",
+          },
+        ],
       });
   } catch (error) {
     return NextResponse.json(

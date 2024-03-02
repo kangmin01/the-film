@@ -25,7 +25,7 @@ export default function SimpleReviewCard({
 
   return (
     <section className="p-4 border-b border-neutral-300 w-[1000px] mx-auto">
-      <h1 className="text-lg font-bold">{movie.title}</h1>
+      {!isMoviePage && <h1 className="text-lg font-bold">{movie.title}</h1>}
       <div className="flex justify-between">
         <div className="flex items-center mb-2">
           <Rating
@@ -39,7 +39,13 @@ export default function SimpleReviewCard({
           />
           <span className="mt-1">{rating}</span>
         </div>
-        {isOwner && <ReviewActions reviewId={_id} />}
+        {isOwner && (
+          <ReviewActions
+            reviewId={_id}
+            username={writer.username}
+            movieId={movie._id}
+          />
+        )}
       </div>
       <p className="mb-2">{content}</p>
       <div className="flex justify-end items-center">

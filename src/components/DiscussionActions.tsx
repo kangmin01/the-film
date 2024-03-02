@@ -20,7 +20,6 @@ export default function DiscussionActions({ discussionId }: Props) {
       });
 
       if (response.ok) {
-        // 리뷰 mutate
         router.push("/discussions");
       } else {
         console.error("Failed to delete the discussion.");
@@ -34,6 +33,7 @@ export default function DiscussionActions({ discussionId }: Props) {
     <div className="absolute bottom-5 right-1 flex text-neutral-300 items-center pr-6">
       <Link
         href={`/discussion/${discussionId}/edit-discussion`}
+        onClick={(e) => e.stopPropagation()}
         className="mr-1.5 hover:text-neutral-500"
       >
         <EditIcon />

@@ -51,7 +51,7 @@ export default function EditReviewPage({ params: { id } }: Props) {
       });
 
       if (response.ok) {
-        router.push("/reviews");
+        router.back();
       }
     } catch (error) {
       console.error("Error:", error);

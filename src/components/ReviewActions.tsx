@@ -2,13 +2,18 @@ import Link from "next/link";
 import EditIcon from "./ui/icons/EditIcon";
 import RemoveIcon from "./ui/icons/RemoveIcon";
 import { useRouter } from "next/navigation";
+import { useSWRConfig } from "swr";
 
 type Props = {
   reviewId: string;
+  username?: string;
+  movieId?: string;
 };
 
-export default function ReviewActions({ reviewId }: Props) {
+export default function ReviewActions({ reviewId, username, movieId }: Props) {
   const router = useRouter();
+
+  const { mutate } = useSWRConfig();
 
   const handleRemove = async () => {
     const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -19,8 +24,12 @@ export default function ReviewActions({ reviewId }: Props) {
         body: JSON.stringify({ id: reviewId }),
       });
 
+      await mutate(`/api/user/${username}`);
+      await mutate("/api/reviews");
+      await mutate(`/api/movie/${movieId}`);
+
       if (response.ok) {
-        // 리뷰 mutate
+        router.refresh();
       } else {
         console.error("Failed to delete the review.");
       }
