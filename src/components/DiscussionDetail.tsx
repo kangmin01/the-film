@@ -11,11 +11,18 @@ import { useSWRConfig } from "swr";
 type Props = {
   discussion: Discussion;
   onClose: () => void;
+  username?: string;
+  movieId?: string;
 };
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-export default function DiscussionDetail({ discussion, onClose }: Props) {
+export default function DiscussionDetail({
+  discussion,
+  onClose,
+  username,
+  movieId,
+}: Props) {
   const { data: session } = useSession();
   const [user, setUser] = useState(null);
   const [isHost, setIsHost] = useState(false);
@@ -40,6 +47,8 @@ export default function DiscussionDetail({ discussion, onClose }: Props) {
 
   const notices = discussion.notice.split("\r\n");
 
+  const { mutate } = useSWRConfig();
+
   const handleRemove = async () => {
     try {
       const response = await fetch(`${baseURL}/api/movie/remove-discussion`, {
@@ -47,8 +56,12 @@ export default function DiscussionDetail({ discussion, onClose }: Props) {
         body: JSON.stringify({ id: discussion._id }),
       });
 
+      await mutate(`/api/user/${username}`);
+      await mutate("/api/discussions");
+      await mutate(`/api/movie/${movieId}`);
+
       if (response.ok) {
-        router.push(`/discussions`);
+        onClose();
       } else {
         console.error("Failed to delete the discussion.");
       }
@@ -56,8 +69,6 @@ export default function DiscussionDetail({ discussion, onClose }: Props) {
       console.error("An error occurred:", error);
     }
   };
-
-  const { mutate } = useSWRConfig();
 
   const handleJoin = async () => {
     try {
@@ -144,7 +155,6 @@ export default function DiscussionDetail({ discussion, onClose }: Props) {
             </button>
           ) : (
             <button
-              onClick={handleJoin}
               disabled={true}
               className="block mt-10 bg-c3 rounded-xl text-xl p-2 px-14 text-white font-bold"
             >

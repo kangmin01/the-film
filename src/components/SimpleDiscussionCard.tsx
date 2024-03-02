@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default function SimpleDiscussionCard({ discussion }: Props) {
-  const { _id, subtitle, guest, host, maxHeadcount, date, startTime } =
+  const { _id, subtitle, guest, host, maxHeadcount, date, startTime, movie } =
     discussion;
   const { data: session } = useSession();
   const user = session?.user;
@@ -48,11 +48,19 @@ export default function SimpleDiscussionCard({ discussion }: Props) {
           )}
         </div>
       </div>
-      {isHost && <DiscussionActions discussionId={_id} />}
+      {isHost && (
+        <DiscussionActions
+          discussionId={_id}
+          username={user.username}
+          movieId={movie._id}
+        />
+      )}
       {openModal ? (
         <ModalPortal>
           <DiscussionModal onClose={() => setOpenModal(false)}>
             <DiscussionDetail
+              username={host}
+              movieId={movie._id}
               discussion={discussion}
               onClose={() => setOpenModal(false)}
             />

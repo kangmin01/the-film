@@ -50,7 +50,7 @@ export default function EditDiscussionPage({ params: { id } }: Props) {
       });
 
       if (response.ok) {
-        router.push("/discussions");
+        router.back();
       }
     } catch (error) {
       console.error("Error:", error);

@@ -6,14 +6,17 @@ import { useState } from "react";
 import ModalPortal from "./ui/ModalPortal";
 import DiscussionModal from "./DiscussionModal";
 import DiscussionDetail from "./DiscussionDetail";
+import { useSession } from "next-auth/react";
 
 type Props = {
   discussion: Discussion;
 };
 
 export default function DiscussionCard({ discussion }: Props) {
-  const { _id, subtitle, movie, date, startTime, maxHeadcount, guest } =
+  const { _id, subtitle, movie, date, startTime, maxHeadcount, guest, host } =
     discussion;
+  const { data: session } = useSession();
+  const user = session?.user;
 
   const guestNum = guest.length + 1;
 
@@ -51,6 +54,8 @@ export default function DiscussionCard({ discussion }: Props) {
             <DiscussionDetail
               discussion={discussion}
               onClose={() => setOpenModal(false)}
+              username={user.username}
+              movieId={movie._id}
             />
           </DiscussionModal>
         </ModalPortal>

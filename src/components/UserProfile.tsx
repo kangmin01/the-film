@@ -1,8 +1,6 @@
 import { UserProfile } from "@/types/userTypes";
 import Image from "next/image";
 import UserActivity from "./UserActivity";
-import Link from "next/link";
-import EditIcon from "./ui/icons/EditIcon";
 
 type Props = {
   user: UserProfile;
@@ -23,11 +21,6 @@ export default function UserProfile({
           height={200}
           width={200}
         />
-        {isOwner && (
-          <Link href={`/user/${username}/edit-user`}>
-            <EditIcon />
-          </Link>
-        )}
         <h1 className="text-2xl font-bold my-2">{username}</h1>
         <span className="text-lg text-c3">{email}</span>
       </div>
