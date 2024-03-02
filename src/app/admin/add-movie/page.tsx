@@ -38,21 +38,38 @@ export default function AddMoviePage() {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <input type="text" name="title" placeholder="Title" required />
+    <section className="flex flex-col items-center">
+      <h1 className="text-3xl font-bold text-c3 mt-20 mb-12">Add Movie</h1>
+      <form
+        className="flex flex-col gap-6 w-[400px]"
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+      >
+        <input
+          className="w-full outline-none border border-c1 rounded-md p-4"
+          type="text"
+          name="title"
+          placeholder="Title"
+          required
+        />
         {file && (
-          <div className="w-24 h-32">
+          <div className="w-full h-[300px] relative">
             <Image
               src={URL.createObjectURL(file)}
-              width={100}
-              height={140}
+              fill
               alt="Poster"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
         )}
-        <label htmlFor="posterUrl">Select Poster</label>
+        <div className="flex justify-center">
+          <label
+            htmlFor="posterUrl"
+            className="p-1 px-2 border bg-blue-50 hover:bg-blue-100 cursor-pointer border-neutral-200 text-c3 rounded-3xl"
+          >
+            Select Poster
+          </label>
+        </div>
         <input
           className="hidden"
           type="file"
@@ -62,11 +79,31 @@ export default function AddMoviePage() {
           onChange={handleChange}
           required
         />
-        <input type="text" name="director" placeholder="director" required />
-        <input type="date" name="releaseDate" required />
-        <textarea name="description" placeholder="description" required />
-        <button>Add Movie</button>
+        <input
+          className="w-full outline-none border border-c1 rounded-md p-4"
+          type="text"
+          name="director"
+          placeholder="director"
+          required
+        />
+        <input
+          className="w-full outline-none border border-c1 rounded-md p-4"
+          type="date"
+          name="releaseDate"
+          required
+        />
+        <textarea
+          className="w-full outline-none border border-c1 rounded-md p-4"
+          name="description"
+          placeholder="description"
+          cols={10}
+          rows={5}
+          required
+        />
+        <button className="w-full bg-c2 rounded-xl px-20 py-2.5 text-xl font-bold text-white">
+          Add Movie
+        </button>
       </form>
-    </>
+    </section>
   );
 }

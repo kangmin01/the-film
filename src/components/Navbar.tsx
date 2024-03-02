@@ -27,7 +27,10 @@ export default function Navbar() {
 
   return (
     <div className="bg-c1 flex justify-between items-center px-6 py-3">
-      <Link href="/" className={`${lobsterTwo.className} text-c5 text-4xl`}>
+      <Link
+        href="/"
+        className={`${lobsterTwo.className} text-c5 text-4xl whitespace-nowrap`}
+      >
         The Film
       </Link>
       <nav>
@@ -52,15 +55,21 @@ export default function Navbar() {
             </div>
           )}
           {session ? (
-            <button onClick={() => signOut()}>Sing out</button>
+            <button className="whitespace-nowrap" onClick={() => signOut()}>
+              Sing out
+            </button>
           ) : (
             <>
-              <button onClick={() => signIn()}>Sign in</button>
-              <Link href="/signup">Sign Up</Link>
+              <button className="whitespace-nowrap" onClick={() => signIn()}>
+                Sign in
+              </button>
+              <Link href="/signup" className="whitespace-nowrap">
+                Sign Up
+              </Link>
             </>
           )}
           {user?.type === "admin" ? (
-            <li className="flex items-center">
+            <li className="flex items-center whitespace-nowrap">
               <Link href="/admin/add-movie">Add Movie</Link>
             </li>
           ) : (

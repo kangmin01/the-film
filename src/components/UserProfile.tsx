@@ -15,7 +15,7 @@ export default function UserProfile({
     <section className="mb-16">
       <div className="flex flex-col items-center my-16">
         <Image
-          className="rounded-full"
+          className="rounded-full w-[200px] h-[200px]"
           src={avatarUrl}
           alt="user avatar"
           height={200}

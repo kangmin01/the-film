@@ -15,7 +15,7 @@ export async function searchMoives(keyword?: string) {
         }
       : {};
 
-    return Movie.find(query);
+    return Movie.find(query).sort({ _id: -1 });
   } catch (error) {
     return NextResponse.json(
       { message: "Error fetching data from DB" },
