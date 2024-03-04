@@ -18,14 +18,16 @@ export default function ReviewCard({
 
   return (
     <section className="flex">
-      <Image
-        className="mr-4"
-        src={movie.posterUrl}
-        alt={movie.title}
-        width={140}
-        height={180}
-      />
-      <div>
+      <div className="relative w-1/4 h-[200px]">
+        <Image
+          className="w-full h-full object-contain"
+          src={movie.posterUrl}
+          alt={movie.title}
+          sizes="25vw"
+          fill
+        />
+      </div>
+      <div className="w-3/4">
         <h1 className="text-xl font-bold">{movie.title}</h1>
         <div className="flex justify-between">
           <div className="flex items-center">
@@ -42,7 +44,7 @@ export default function ReviewCard({
           </div>
           {isOwner && <ReviewActions reviewId={_id} />}
         </div>
-        <p className="w-[700px] h-[105px] my-2">{content}</p>
+        <p className="w-full h-[105px] my-2">{content}</p>
         <div className="flex justify-end items-center pr-10">
           <span className="text-sm text-c1 mr-4 mt-0.5">
             {parseDate(createdAt)}

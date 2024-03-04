@@ -22,14 +22,16 @@ export default function MovieCard({
 
   return (
     <Link href={`/movie/${_id}`} className="flex">
-      <Image
-        className="mr-4"
-        src={posterUrl}
-        width={160}
-        height={260}
-        alt={title || "Movie poster"}
-      />
-      <div className="flex flex-col w-3/4">
+      <div className="mr-6 w-1/4 h-[250px] relative">
+        <Image
+          className="w-full h-full object-contain"
+          src={posterUrl}
+          fill
+          sizes="25vw"
+          alt={title || "Movie poster"}
+        />
+      </div>
+      <div className="flex flex-col h-[250px] w-3/4 justify-around">
         <span className="w-full font-bold text-3xl truncate mb-2">
           {title}
           <span className="text-neutral-400 text-sm font-light ml-2">
