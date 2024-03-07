@@ -25,7 +25,9 @@ export default function SimpleReviewCard({
 
   return (
     <section className="p-4 border-b border-neutral-300 w-[1000px] mx-auto">
-      {!isMoviePage && <h1 className="text-lg font-bold">{movie.title}</h1>}
+      {!isMoviePage && (
+        <span className="block text-lg font-bold">{movie.title}</span>
+      )}
       <div className="flex justify-between">
         <div className="flex items-center mb-2">
           <Rating

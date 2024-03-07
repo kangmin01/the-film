@@ -37,7 +37,9 @@ export default function DiscussionCard({ discussion }: Props) {
       ) : dDay <= 3 ? (
         <span className="absolute top-5 left-[-30px] bg-point p-2 px-6 text-white text-xl font-bold rounded-3xl">{`D-${dDay}`}</span>
       ) : null}
-      <h1 className="font-bold text-2xl mb-4 w-full">{movie.title}</h1>
+      <span className="block font-bold text-2xl mb-4 w-full truncate">
+        {movie.title}
+      </span>
       <p className="text-xl font-semibold text-c3 mb-4 w-full truncate">
         {subtitle}
       </p>

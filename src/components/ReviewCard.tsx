@@ -28,7 +28,7 @@ export default function ReviewCard({
         />
       </div>
       <div className="w-3/4">
-        <h1 className="text-xl font-bold">{movie.title}</h1>
+        <span className="block text-xl font-bold">{movie.title}</span>
         <div className="flex justify-between">
           <div className="flex items-center">
             <Rating

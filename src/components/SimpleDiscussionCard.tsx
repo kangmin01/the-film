@@ -29,7 +29,7 @@ export default function SimpleDiscussionCard({ discussion }: Props) {
       onClick={() => setOpenModal(true)}
     >
       <div className="block border border-c1 hover:border-c2 p-4 px-6 rounded-2xl">
-        <h1 className="text-xl font-bold text-c5 mb-2">{subtitle}</h1>
+        <span className="block text-xl font-bold text-c5 mb-2">{subtitle}</span>
         <div>
           <span>
             {parseDateToUs(date)} {startTime} {`\n`}

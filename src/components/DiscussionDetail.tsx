@@ -113,12 +113,12 @@ export default function DiscussionDetail({
           alt={"poster url"}
         />
         <div className="py-2">
-          <h1 className="text-2xl font-semibold mb-6">
+          <span className="block text-2xl font-semibold mb-6">
             {discussion.movie.title}
-          </h1>
-          <h2 className="text-3xl font-bold mb-6 w-[600px]">
+          </span>
+          <span className="block text-3xl font-bold mb-6 w-[600px]">
             {discussion.subtitle}
-          </h2>
+          </span>
           <span className="mr-4 text-xl font-semibold">
             {parseDateToUs(discussion.date)}
           </span>

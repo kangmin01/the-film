@@ -43,7 +43,7 @@ export default function SignUpPage() {
 
   return (
     <section className="w-full flex justify-center">
-      {message && <h1>{message}</h1>}
+      {message && <span>{message}</span>}
       <div className="w-2/5 flex flex-col justify-center items-center mt-40 p-20 border border-neutral-300 rounded-2xl shadow-xl">
         <h1 className="text-4xl font-bold text-c5 mb-8">Sign Up</h1>
         {file && (
