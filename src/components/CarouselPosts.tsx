@@ -16,12 +16,15 @@ export default function CarouselPosts() {
         infiniteLoop={true}
         showStatus={false}
         showIndicators={false}
-        className="pt-16 pb-6"
+        showThumbs={false}
+        className="py-16"
       >
         {reviews &&
-          reviews
-            .slice(0, 10)
-            .map((review) => <ReviewPost key={review._id} review={review} />)}
+          reviews.slice(0, 10).map((review) => (
+            <div key={review._id}>
+              <ReviewPost review={review} />
+            </div>
+          ))}
       </Carousel>
     </section>
   );

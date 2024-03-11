@@ -43,7 +43,7 @@ export default function AddDiscussionPage({ params: { id } }: Props) {
       });
 
       if (response.ok) {
-        router.push(`/movie/${id}`);
+        router.push(`/movie/${id}?tab=discussions`);
       }
     } catch (error) {
       console.error("Error: ", error);
