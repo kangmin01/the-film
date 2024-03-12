@@ -1,5 +1,5 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Signin from "@/components/Signin";
+import { authOptions } from "@/lib/authOptions";
 import { getServerSession } from "next-auth";
 import { getCsrfToken, getProviders } from "next-auth/react";
 import { redirect } from "next/navigation";
