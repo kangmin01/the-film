@@ -1,5 +1,5 @@
 import Signin from "@/components/Signin";
-import { authOptions } from "@/lib/authOptions";
+import { authOptions } from "@/authOptions";
 import { getServerSession } from "next-auth";
 import { getCsrfToken, getProviders } from "next-auth/react";
 import { redirect } from "next/navigation";
@@ -18,7 +18,6 @@ export default async function SignInpage({
     redirect("/");
   }
   const providers = (await getProviders()) ?? {};
-
   return (
     <div className="w-full flex justify-center">
       <Signin
