@@ -12,7 +12,6 @@ export default async function SignInpage({
   searchParams: { callbackUrl },
 }: Props) {
   const session = await getServerSession(authOptions);
-  const csrfToken = (await getCsrfToken()) || "";
 
   if (session) {
     redirect("/");
@@ -20,11 +19,7 @@ export default async function SignInpage({
   const providers = (await getProviders()) ?? {};
   return (
     <div className="w-full flex justify-center">
-      <Signin
-        providers={providers}
-        callbackUrl={callbackUrl ?? "/"}
-        csrfToken={csrfToken}
-      />
+      <Signin providers={providers} callbackUrl={callbackUrl ?? "/"} />
     </div>
   );
 }

@@ -9,7 +9,7 @@ type Props = {
   csrfToken?: string;
 };
 
-export default function Signin({ providers, callbackUrl, csrfToken }: Props) {
+export default function Signin({ providers, callbackUrl }: Props) {
   const [message, setMessage] = useState();
 
   const handleSubmit = async (e: FormEvent) => {
