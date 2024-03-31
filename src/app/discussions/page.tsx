@@ -1,5 +1,7 @@
 import Discussions from "@/components/Discussions";
 
+export const dynamic = "force-dynamic";
+
 export default function DiscussionsPage() {
   return (
     <>
