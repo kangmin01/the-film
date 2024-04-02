@@ -6,7 +6,7 @@ import { Discussion, DiscussionState } from "@/types/discussionTypes";
 import { parseDate } from "@/util/date";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 
 type Props = {
   params: { id: string };
@@ -19,6 +19,7 @@ export default function EditDiscussionPage({ params: { id } }: Props) {
     error,
   } = useSWR<Discussion>(`/api/discussion/${id}/edit-discussion`);
   const router = useRouter();
+  const { mutate } = useSWRConfig();
   const [updatedData, setUpdatedData] = useState<DiscussionState>({});
 
   useEffect(() => {
@@ -50,6 +51,8 @@ export default function EditDiscussionPage({ params: { id } }: Props) {
       });
 
       if (response.ok) {
+        await mutate("/api/discussions");
+
         router.back();
       }
     } catch (error) {

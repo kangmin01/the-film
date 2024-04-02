@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { Rating } from "react-simple-star-rating";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 
 type Props = {
   params: { id: string };
@@ -20,6 +20,8 @@ export default function EditReviewPage({ params: { id } }: Props) {
   } = useSWR(`/api/review/${id}/edit-review`);
 
   const router = useRouter();
+
+  const { mutate } = useSWRConfig();
 
   const [rating, setRating] = useState(1);
   const [content, setContent] = useState("");
@@ -51,6 +53,8 @@ export default function EditReviewPage({ params: { id } }: Props) {
       });
 
       if (response.ok) {
+        await mutate("/api/reviews");
+
         router.back();
       }
     } catch (error) {
