@@ -16,7 +16,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  setInterval(updateDiscussionStatus, 60000);
+  setInterval(updateDiscussionStatus, 1000);
   return (
     <html lang="en">
       <body className={inter.className}>
