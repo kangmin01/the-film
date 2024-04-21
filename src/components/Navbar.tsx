@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { lobsterTwo } from "../app/font";
-import { IoSearchOutline } from "react-icons/io5";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 

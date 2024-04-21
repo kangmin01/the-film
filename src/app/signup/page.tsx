@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 export default function SignUpPage() {
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const router = useRouter();
 
@@ -43,7 +43,11 @@ export default function SignUpPage() {
 
   return (
     <section className="w-full flex justify-center">
-      {message && <span>{message}</span>}
+      {message && (
+        <span className="text-xl fixed top-40 bg-red-300 p-2 px-4 rounded-md font-semibold">
+          ❌ {message} ❌
+        </span>
+      )}
       <div className="w-2/5 flex flex-col justify-center items-center mt-40 p-20 border border-neutral-300 rounded-2xl shadow-xl">
         <h1 className="text-4xl font-bold text-c5 mb-8">Sign Up</h1>
         {file && (

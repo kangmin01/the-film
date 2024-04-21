@@ -34,7 +34,11 @@ export default function Signin({ providers, callbackUrl }: Props) {
   };
   return (
     <>
-      {message && <span>{message}</span>}
+      {message && (
+        <span className="text-xl fixed top-40 bg-red-300 p-2 px-4 rounded-md font-semibold">
+          ❌ {message} ❌
+        </span>
+      )}
       <section className="w-2/5 flex flex-col justify-center items-center mt-40 p-20 border border-neutral-300 rounded-2xl shadow-xl">
         <h1 className="text-4xl font-bold text-c5 mb-8">Sign in</h1>
         <form onSubmit={handleSubmit} className="flex flex-col w-full">
