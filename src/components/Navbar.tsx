@@ -8,16 +8,16 @@ import Image from "next/image";
 const menu = [
   {
     href: "/search",
-    title: "Movie",
+    title: "Movie"
   },
   {
     href: "/reviews",
-    title: "Review",
+    title: "Review"
   },
   {
     href: "/discussions",
-    title: "Discussion",
-  },
+    title: "Discussion"
+  }
 ];
 
 export default function Navbar() {
@@ -54,7 +54,10 @@ export default function Navbar() {
             </div>
           )}
           {session ? (
-            <button className="whitespace-nowrap" onClick={() => signOut()}>
+            <button
+              className="whitespace-nowrap"
+              onClick={() => signOut({ callbackUrl: "/" })}
+            >
               Sing out
             </button>
           ) : (
