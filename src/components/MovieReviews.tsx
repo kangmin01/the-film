@@ -15,11 +15,13 @@ export default function MovieReviews({ reviews }: Props) {
       <Button text="Write a review" src={`${pathname}/add-review`} />
       <ul className="h-4/5 overflow-y-auto">
         {reviews &&
-          reviews.map((review) => (
-            <li key={review._id} className="mb-2">
-              <SimpleReviewCard review={review} />
-            </li>
-          ))}
+          reviews.map((review) =>
+            review.writer ? (
+              <li key={review._id} className="mb-2">
+                <SimpleReviewCard review={review} />
+              </li>
+            ) : null
+          )}
       </ul>
     </>
   );

@@ -21,7 +21,7 @@ export default function DiscussionDetail({
   discussion,
   onClose,
   username,
-  movieId,
+  movieId
 }: Props) {
   const { data: session } = useSession();
   const [user, setUser] = useState(null);
@@ -53,7 +53,7 @@ export default function DiscussionDetail({
     try {
       const response = await fetch(`${baseURL}/api/movie/remove-discussion`, {
         method: "DELETE",
-        body: JSON.stringify({ id: discussion._id }),
+        body: JSON.stringify({ id: discussion._id })
       });
 
       await mutate(`/api/user/${username}`);
@@ -71,20 +71,23 @@ export default function DiscussionDetail({
   };
 
   const handleJoin = async () => {
+    if (!session) {
+      router.push("/auth/signin");
+    }
     try {
       const response = await fetch(
         `${baseURL}/api/discussion/join-discussion`,
         {
           method: "PUT",
-          body: JSON.stringify({ id: discussion._id, user: session?.user.id }),
+          body: JSON.stringify({ id: discussion._id, user: session?.user.id })
         }
       );
-      await mutate(`/api/movie/${discussion.movie._id}`);
-      await mutate("/api/discussions");
 
       if (response.ok) {
         router.refresh();
         setIsGuest(true);
+        mutate(`/api/movie/${discussion.movie._id}`);
+        mutate("/api/discussions");
       } else {
         console.error("Failed to delete the discussion.");
       }

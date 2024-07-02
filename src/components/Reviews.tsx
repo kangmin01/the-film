@@ -14,14 +14,16 @@ export default function Reviews() {
       </h1>
       <ul className="w-[860px] mx-auto">
         {reviews &&
-          reviews.map((review) => (
-            <li
-              key={review._id}
-              className="px-4 py-6 border-t border-neutral-300"
-            >
-              <ReviewCard review={review} />
-            </li>
-          ))}
+          reviews.map((review) =>
+            review.writer ? (
+              <li
+                key={review._id}
+                className="px-4 py-6 border-t border-neutral-300"
+              >
+                <ReviewCard review={review} />
+              </li>
+            ) : null
+          )}
       </ul>
     </section>
   );

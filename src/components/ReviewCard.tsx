@@ -10,11 +10,11 @@ type Props = {
 };
 
 export default function ReviewCard({
-  review: { content, createdAt, movie, rating, writer, _id },
+  review: { content, createdAt, movie, rating, writer, _id }
 }: Props) {
   const { data: session } = useSession();
   const user = session?.user;
-  const isOwner = user?.username === writer.username;
+  const isOwner = user?.username === writer?.username;
 
   return (
     <section className="flex">
@@ -49,7 +49,7 @@ export default function ReviewCard({
           <span className="text-sm text-c1 mr-4 mt-0.5">
             {parseDate(createdAt)}
           </span>
-          <span className="text-c3">by. {writer.username}</span>
+          <span className="text-c3">by. {writer?.username}</span>
         </div>
       </div>
     </section>

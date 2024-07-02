@@ -1,14 +1,23 @@
 "use client";
 
 import { uploadImage } from "@/lib/uploadImage";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { redirect, useRouter } from "next/navigation";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
 export default function SignUpPage() {
   const [message, setMessage] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const router = useRouter();
+
+  const { data: session } = useSession();
+  useEffect(() => {
+    if (session) {
+      // router.push("/");
+      redirect("/");
+    }
+  }, [session]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -22,7 +31,7 @@ export default function SignUpPage() {
 
       const response = await fetch("/api/signup", {
         method: "POST",
-        body: formData,
+        body: formData
       });
       const data = await response.json();
 

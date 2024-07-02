@@ -15,14 +15,14 @@ export default function UserPage({ params: { username } }: Props) {
   const {
     data: user,
     isLoading,
-    error,
+    error
   } = useSWR<UserInfo>(`/api/user/${username}`);
 
   const { data } = useSession();
   const sessionUser = data?.user;
   const isOwner = user?.username === sessionUser?.username;
 
-  if (user === null || error) {
+  if (!isLoading && (user === null || error)) {
     return NotFound();
   }
 

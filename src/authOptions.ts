@@ -13,7 +13,7 @@ export const authOptions: NextAuthOptions = {
       name: "Credentials",
       credentials: {
         username: { label: "Username", type: "text" },
-        password: { label: "Password", type: "password" },
+        password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
         await connectDB();
@@ -27,20 +27,20 @@ export const authOptions: NextAuthOptions = {
         } else {
           return null;
         }
-      },
+      }
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_OAUTH_ID || "",
-      clientSecret: process.env.GOOGLE_OAUTH_SECRET || "",
+      clientSecret: process.env.GOOGLE_OAUTH_SECRET || ""
     }),
     GitHub({
       clientId: process.env.GITHUB_OAUTH_ID || "",
-      clientSecret: process.env.GITHUB_OAUTH_SECRET || "",
+      clientSecret: process.env.GITHUB_OAUTH_SECRET || ""
     }),
     KakaoProvider({
       clientId: process.env.KAKAO_OAUTH_ID || "",
-      clientSecret: process.env.KAKAO_OAUTH_SECRET || "",
-    }),
+      clientSecret: process.env.KAKAO_OAUTH_SECRET || ""
+    })
   ],
   callbacks: {
     async signIn({ user: { email, image } }) {
@@ -62,7 +62,7 @@ export const authOptions: NextAuthOptions = {
           image: getUser?.image,
           username: getUser?.username,
           type: getUser?.type,
-          id: getUser?.id,
+          id: getUser?.id
         };
         session.accessToken = token.accessToken as string;
       }
@@ -74,12 +74,12 @@ export const authOptions: NextAuthOptions = {
         token.accessToken = account.access_token;
       }
       return token;
-    },
+    }
   },
   session: {
-    strategy: "jwt",
+    strategy: "jwt" //기본값 30일
   },
   pages: {
-    signIn: "/auth/signin",
-  },
+    signIn: "/auth/signin"
+  }
 };

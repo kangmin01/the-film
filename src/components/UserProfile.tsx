@@ -1,4 +1,4 @@
-import { UserProfile } from "@/types/userTypes";
+import type { UserProfile } from "@/types/userTypes";
 import Image from "next/image";
 import UserActivity from "./UserActivity";
 
@@ -9,7 +9,7 @@ type Props = {
 
 export default function UserProfile({
   user: { username, avatarUrl, email, reviews, host, guest },
-  isOwner,
+  isOwner
 }: Props) {
   return (
     <section className="mb-16">

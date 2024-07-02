@@ -56,7 +56,7 @@ export default function DiscussionCard({ discussion }: Props) {
             <DiscussionDetail
               discussion={discussion}
               onClose={() => setOpenModal(false)}
-              username={user.username}
+              username={user?.username}
               movieId={movie._id}
             />
           </DiscussionModal>
