@@ -51,7 +51,7 @@ export default function DiscussionDetail({
 
   const handleRemove = async () => {
     try {
-      const response = await fetch(`${baseURL}/api/movie/remove-discussion`, {
+      const response = await fetch(`/api/movie/remove-discussion`, {
         method: "DELETE",
         body: JSON.stringify({ id: discussion._id })
       });

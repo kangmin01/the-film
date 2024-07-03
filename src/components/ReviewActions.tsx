@@ -19,9 +19,9 @@ export default function ReviewActions({ reviewId, username, movieId }: Props) {
     const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
     try {
-      const response = await fetch(`${baseURL}/api/movie/remove-review`, {
+      const response = await fetch(`/api/movie/remove-review`, {
         method: "DELETE",
-        body: JSON.stringify({ id: reviewId }),
+        body: JSON.stringify({ id: reviewId })
       });
 
       await mutate(`/api/user/${username}`);

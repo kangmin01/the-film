@@ -13,7 +13,7 @@ type Props = {
 export default function DiscussionActions({
   discussionId,
   username,
-  movieId,
+  movieId
 }: Props) {
   const router = useRouter();
 
@@ -25,9 +25,9 @@ export default function DiscussionActions({
     const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
     try {
-      const response = await fetch(`${baseURL}/api/movie/remove-discussion`, {
+      const response = await fetch(`/api/movie/remove-discussion`, {
         method: "DELETE",
-        body: JSON.stringify({ id: discussionId }),
+        body: JSON.stringify({ id: discussionId })
       });
 
       await mutate(`/api/user/${username}`);
