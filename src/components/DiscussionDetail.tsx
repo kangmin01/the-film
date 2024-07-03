@@ -75,13 +75,10 @@ export default function DiscussionDetail({
       router.push("/auth/signin");
     }
     try {
-      const response = await fetch(
-        `${baseURL}/api/discussion/join-discussion`,
-        {
-          method: "PUT",
-          body: JSON.stringify({ id: discussion._id, user: session?.user.id })
-        }
-      );
+      const response = await fetch(`/api/discussion/join-discussion`, {
+        method: "PUT",
+        body: JSON.stringify({ id: discussion._id, user: session?.user.id })
+      });
 
       if (response.ok) {
         router.refresh();
